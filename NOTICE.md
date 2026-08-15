@@ -1,8 +1,9 @@
 # Note sulle licenze
 
 **Il codice** di English Quest — HTML, CSS, JavaScript e contenuti didattici,
-cioè tutto quello che sta in `src/` e il risultato in `index.html` — è rilasciato
-sotto licenza **MIT**, il cui testo è in [`LICENSE`](LICENSE).
+cioè tutto quello che sta in `src/` e il risultato in `index.html` — è di
+**@ginopizza** ed è rilasciato sotto licenza **MIT**, il cui testo è in
+[`LICENSE`](LICENSE).
 
 **Il carattere** incorporato in `index.html` è **OpenDyslexic**, di Abbie Gonzalez,
 e mantiene la propria licenza: **SIL Open Font License 1.1**, testo completo in
