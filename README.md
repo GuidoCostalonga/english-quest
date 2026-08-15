@@ -58,8 +58,15 @@ Per aggiungere vocaboli si apre `src/p3-data.js`: ogni parola è
 `['inglese', 'italiano', 'emoji', 'frase EN (facoltativa)', 'frase IT (facoltativa)']`.
 I livelli si generano da soli. Dettagli in [`src/LEGGIMI.md`](src/LEGGIMI.md).
 
-## Font
+## Licenza
 
-Il carattere incorporato è **OpenDyslexic** di Abbie Gonzalez, distribuito con
-SIL Open Font License 1.1: il testo della licenza è in
-[`OFL-OpenDyslexic.txt`](OFL-OpenDyslexic.txt).
+Il codice e i contenuti didattici sono rilasciati sotto **licenza MIT**
+([`LICENSE`](LICENSE)): usali, modificali e ridistribuiscili pure, anche a scuola
+o in un altro progetto, tenendo la nota di copyright.
+
+Attenzione a una cosa: `index.html` **incorpora il carattere OpenDyslexic**
+di Abbie Gonzalez, che ha una licenza propria — SIL Open Font License 1.1,
+testo in [`OFL-OpenDyslexic.txt`](OFL-OpenDyslexic.txt). Chi ridistribuisce
+`index.html` ridistribuisce anche il carattere, quindi le due licenze viaggiano
+insieme. Se ti serve solo il codice senza vincoli sul font, togli il blocco
+`@font-face` da `src/font.css` e ricompila.
