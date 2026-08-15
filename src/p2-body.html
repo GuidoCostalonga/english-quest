@@ -1,0 +1,205 @@
+<noscript>
+  <div style="max-width:640px;margin:20px auto;padding:16px;border:3px solid #c8384f;border-radius:16px;background:#fffdf7;color:#2f2a25;font-family:system-ui,sans-serif">
+    <b>Qui JavaScript non è attivo.</b> English Quest ha bisogno di un browser vero: su computer
+    apri il file con un doppio clic, su iPhone e iPad apri l'indirizzo web dell'app in Safari.
+  </div>
+</noscript>
+<div class="bg-decor" aria-hidden="true"><i></i><i></i><i></i></div>
+<canvas id="confetti" aria-hidden="true"></canvas>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<div class="app">
+
+  <header class="topbar">
+    <button class="btn icon ghost" id="btn-back" hidden aria-label="Torna indietro">←</button>
+    <span class="chip gold" id="chip-xp" title="Punti esperienza">⭐ <b>0</b> XP</span>
+    <span class="chip fire" id="chip-streak" title="Giorni di fila">🔥 <b>0</b></span>
+    <span class="spacer"></span>
+    <button class="btn icon" id="btn-audio" aria-label="Attiva o disattiva la lettura automatica" aria-pressed="true">🔊</button>
+    <button class="btn icon" id="btn-settings" aria-label="Apri le impostazioni">⚙️</button>
+  </header>
+
+  <!-- ============ HOME ============ -->
+  <main id="screen-home" class="screen active" role="main">
+    <div class="hero">
+      <svg class="mascot" id="mascot" viewBox="0 0 100 100" role="img" aria-label="Bip, il robot che ti accompagna">
+        <!-- i colori arrivano dal CSS: Safari ignora var() dentro gli attributi SVG -->
+        <ellipse cx="50" cy="93" rx="26" ry="5" fill="rgba(0,0,0,.12)"/>
+        <rect class="arm-l m-acc" x="14" y="52" width="10" height="22" rx="5"/>
+        <rect class="m-acc" x="76" y="52" width="10" height="22" rx="5"/>
+        <rect class="m-body" x="22" y="34" width="56" height="50" rx="16"/>
+        <rect class="m-face" x="30" y="46" width="40" height="26" rx="10"/>
+        <circle class="eye m-ink" cx="42" cy="58" r="5"/>
+        <circle class="eye m-ink" cx="58" cy="58" r="5"/>
+        <path class="m-mouth" d="M42 68 q8 6 16 0" stroke-width="3" stroke-linecap="round"/>
+        <rect class="m-acc" x="46" y="20" width="8" height="14" rx="4"/>
+        <circle class="m-gold" cx="50" cy="17" r="6"/>
+      </svg>
+      <div>
+        <h1>English Quest</h1>
+        <p id="hero-sub">Impara l'inglese un passo alla volta. Tocca il livello che brilla.</p>
+      </div>
+    </div>
+
+    <div id="home-banner"></div>
+
+    <div class="card" id="review-card" hidden style="margin-bottom:18px">
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <span style="font-size:2em">🔁</span>
+        <div style="flex:1 1 160px">
+          <b>Ripasso intelligente</b>
+          <small style="display:block;color:var(--ink-soft)"><span id="review-count">0</span> parole ti aspettano</small>
+        </div>
+        <button class="btn primary" id="btn-review">Ripassa</button>
+      </div>
+    </div>
+
+    <!-- Se JavaScript non gira (anteprima di Mail, WhatsApp o File su iPhone)
+         questo riquadro resta visibile e spiega come aprire davvero l'app.
+         Appena l'app parte, renderMap() lo sostituisce con la mappa dei livelli. -->
+    <div id="map">
+      <div class="card" style="border-color:var(--err)">
+        <b style="font-size:1.1em">⚠️ Questa è solo un'anteprima</b>
+        <p>Se leggi questo riquadro e i pulsanti non rispondono, stai guardando il file
+        dentro l'anteprima di <b>Mail, WhatsApp o File</b>: iPhone mostra la pagina ma
+        non la fa funzionare, quindi i livelli non compaiono.</p>
+        <p><b>Su iPhone e iPad</b> serve l'<b>indirizzo web</b> dell'app: aprilo in Safari
+        e poi <b>Condividi → Aggiungi a Home</b>. Un file salvato nel telefono finisce
+        sempre in anteprima, perché Safari su iOS non può aprire i file locali.</p>
+        <p style="margin-bottom:0"><b>Su computer</b> invece basta un doppio clic sul file.</p>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:10px;margin:26px 0 8px;flex-wrap:wrap">
+      <button class="btn" id="btn-stats" style="flex:1 1 140px">📊 I miei progressi</button>
+      <button class="btn" id="btn-help" style="flex:1 1 140px">❓ Come funziona</button>
+    </div>
+  </main>
+
+  <!-- ============ LEZIONE ============ -->
+  <main id="screen-lesson" class="screen" role="main">
+    <div class="lesson-top">
+      <button class="btn icon" id="btn-quit" aria-label="Esci dalla lezione">✕</button>
+      <div class="progress" role="progressbar" aria-label="Avanzamento della lezione" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="lesson-bar"><i></i></div>
+      <span class="chip" id="lesson-score">✅ <b>0</b></span>
+    </div>
+    <div class="stage" id="stage" aria-live="polite"></div>
+    <div id="feedback"></div>
+  </main>
+
+  <!-- ============ RISULTATI ============ -->
+  <main id="screen-result" class="screen" role="main">
+    <div class="result-head">
+      <span class="ico" id="result-ico">🏆</span>
+      <h1 id="result-title" style="margin:.2em 0">Livello completato!</h1>
+      <p id="result-sub" style="color:var(--ink-soft);margin:0"></p>
+      <div id="result-stars" style="font-size:2em;color:var(--gold);letter-spacing:6px;margin-top:8px"></div>
+    </div>
+    <div class="stat-grid">
+      <div class="stat"><b id="res-xp">0</b><span>XP guadagnati</span></div>
+      <div class="stat"><b id="res-acc">0%</b><span>risposte giuste</span></div>
+      <div class="stat"><b id="res-new">0</b><span>parole nuove</span></div>
+    </div>
+    <div id="result-review" class="card" hidden style="margin-bottom:16px"></div>
+    <button class="btn primary wide" id="btn-continue" style="margin-bottom:10px">Continua</button>
+    <button class="btn wide ghost" id="btn-again">Rifai il livello</button>
+  </main>
+
+  <!-- ============ PROGRESSI ============ -->
+  <main id="screen-stats" class="screen" role="main">
+    <h1 style="font-size:1.4em">📊 I miei progressi</h1>
+    <div class="stat-grid" style="grid-template-columns:repeat(2,1fr)">
+      <div class="stat"><b id="st-xp">0</b><span>XP totali</span></div>
+      <div class="stat"><b id="st-streak">0</b><span>giorni di fila</span></div>
+      <div class="stat"><b id="st-words">0</b><span>parole incontrate</span></div>
+      <div class="stat"><b id="st-mastered">0</b><span>parole imparate</span></div>
+      <div class="stat"><b id="st-acc">0%</b><span>precisione media</span></div>
+      <div class="stat"><b id="st-levels">0</b><span>livelli completati</span></div>
+    </div>
+    <h2 style="font-size:1.1em;margin-top:22px">Da tenere d'occhio</h2>
+    <p style="color:var(--ink-soft);font-size:.9em;margin-top:0">Le parole che sbagli più spesso. Toccale per ascoltarle.</p>
+    <div id="weak-list" class="card"></div>
+    <h2 style="font-size:1.1em;margin-top:22px">Dizionario</h2>
+    <p style="color:var(--ink-soft);font-size:.9em;margin-top:0">Tutto quello che hai già incontrato, con l'audio.</p>
+    <div id="dict-list" class="card" style="max-height:420px;overflow:auto"></div>
+  </main>
+</div>
+
+<!-- ============ IMPOSTAZIONI ============ -->
+<div class="sheet-back" id="sheet-back"></div>
+<section class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title" hidden>
+  <div style="display:flex;align-items:center;gap:10px">
+    <h2 id="sheet-title" style="flex:1">⚙️ Impostazioni</h2>
+    <button class="btn icon" id="sheet-close" aria-label="Chiudi le impostazioni">✕</button>
+  </div>
+
+  <div class="setrow">
+    <span class="lab">Carattere<small>OpenDyslexic aiuta chi ha la dislessia</small></span>
+    <div class="seg" role="group" aria-label="Scelta del carattere">
+      <button data-font="dys" aria-pressed="true">Dislessia</button>
+      <button data-font="sans" aria-pressed="false">Verdana</button>
+      <button data-font="sys" aria-pressed="false">Sistema</button>
+    </div>
+  </div>
+
+  <div class="setrow">
+    <span class="lab">Colori<small>Sfondo chiaro non bianco, meno affaticante</small></span>
+    <div class="seg" role="group" aria-label="Scelta dei colori">
+      <button data-theme="cream" aria-pressed="true">Crema</button>
+      <button data-theme="night" aria-pressed="false">Notte</button>
+      <button data-theme="contrast" aria-pressed="false">Contrasto</button>
+    </div>
+  </div>
+
+  <div class="setrow">
+    <span class="lab" id="lab-fs">Dimensione del testo</span>
+    <input type="range" id="rng-fs" min="15" max="26" step="1" value="17" aria-labelledby="lab-fs">
+  </div>
+  <div class="setrow">
+    <span class="lab" id="lab-ls">Spazio tra le lettere</span>
+    <input type="range" id="rng-ls" min="0" max="10" step="1" value="2" aria-labelledby="lab-ls">
+  </div>
+  <div class="setrow">
+    <span class="lab" id="lab-lh">Spazio tra le righe</span>
+    <input type="range" id="rng-lh" min="14" max="24" step="1" value="17" aria-labelledby="lab-lh">
+  </div>
+
+  <div class="setrow">
+    <span class="lab" id="lab-rate">Velocità della voce<small>Più lenta = più facile da seguire</small></span>
+    <input type="range" id="rng-rate" min="50" max="120" step="5" value="85" aria-labelledby="lab-rate">
+  </div>
+  <div class="setrow">
+    <span class="lab">Voce inglese<small>Scegli quella che ti piace di più</small></span>
+    <select id="sel-voice" aria-label="Voce inglese"><option value="">Automatica</option></select>
+    <button class="btn small" id="btn-try-voice">▶ Prova</button>
+  </div>
+  <div class="setrow">
+    <span class="lab">Leggi da solo<small>Pronuncia le parole senza toccare nulla</small></span>
+    <div class="seg" role="group" aria-label="Lettura automatica">
+      <button data-auto="1" aria-pressed="true">Sì</button>
+      <button data-auto="0" aria-pressed="false">No</button>
+    </div>
+  </div>
+  <div class="setrow">
+    <span class="lab">Testo sempre visibile<small>Negli esercizi di ascolto mostra subito la frase scritta</small></span>
+    <div class="seg" role="group" aria-label="Testo sempre visibile">
+      <button data-hint="1" aria-pressed="false">Sì</button>
+      <button data-hint="0" aria-pressed="true">No</button>
+    </div>
+  </div>
+  <div class="setrow">
+    <span class="lab">Animazioni<small>Spegnile se ti distraggono</small></span>
+    <div class="seg" role="group" aria-label="Animazioni">
+      <button data-anim="on" aria-pressed="true">Sì</button>
+      <button data-anim="off" aria-pressed="false">No</button>
+    </div>
+  </div>
+
+  <div class="setrow" style="gap:8px">
+    <button class="btn small" id="btn-export">⬇️ Salva progressi</button>
+    <button class="btn small" id="btn-import">⬆️ Carica progressi</button>
+    <button class="btn small" id="btn-reset">🗑️ Ricomincia</button>
+    <input type="file" id="file-import" accept="application/json,.json" hidden>
+  </div>
+  <p style="font-size:.8em;color:var(--ink-soft);margin:10px 0 0">English Quest · funziona senza internet · i progressi restano su questo dispositivo</p>
+</section>
