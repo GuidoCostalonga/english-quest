@@ -68,5 +68,4 @@ Attenzione a una cosa: `index.html` **incorpora il carattere OpenDyslexic**
 di Abbie Gonzalez, che ha una licenza propria — SIL Open Font License 1.1,
 testo in [`OFL-OpenDyslexic.txt`](OFL-OpenDyslexic.txt). Chi ridistribuisce
 `index.html` ridistribuisce anche il carattere, quindi le due licenze viaggiano
-insieme. Se ti serve solo il codice senza vincoli sul font, togli il blocco
-`@font-face` da `src/font.css` e ricompila.
+insieme: i dettagli sono in [`NOTICE.md`](NOTICE.md).

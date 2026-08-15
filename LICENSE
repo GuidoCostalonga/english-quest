@@ -19,15 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----
-
-Nota sul carattere incorporato
-------------------------------
-La licenza MIT qui sopra riguarda il codice di English Quest (HTML, CSS,
-JavaScript e contenuti didattici).
-
-Il file index.html incorpora anche il carattere OpenDyslexic, di Abbie Gonzalez,
-che resta distribuito con la propria licenza: SIL Open Font License 1.1, il cui
-testo si trova in OFL-OpenDyslexic.txt. Chi ridistribuisce index.html
-ridistribuisce anche il carattere, quindi deve tenere insieme le due licenze.
