@@ -5,7 +5,7 @@ pensato fin dall'inizio per chi ha un disturbo specifico dell'apprendimento:
 **tutto si può ascoltare**, il carattere ad alta leggibilità è già incluso e
 i colori, la dimensione del testo e la spaziatura si regolano in due tocchi.
 
-👉 **[Apri English Quest](https://ginopizza.github.io/english-quest/)**
+👉 **[Apri English Quest](https://guidocostalonga.github.io/english-quest/)**
 
 Su iPhone e iPad: apri il link in Safari, poi **Condividi → Aggiungi a Home** e
 resta come un'app. Funziona anche senza connessione dopo la prima apertura del file.
