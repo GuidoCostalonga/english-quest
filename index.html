@@ -4,12 +4,59 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover">
 <meta name="theme-color" content="#f3ead8">
-<meta name="description" content="English Quest — impara l'inglese giocando. Vocaboli, verbi irregolari, frasi utili e grammatica con audio e alta leggibilità.">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="English Quest">
-<title>English Quest — impara l'inglese giocando</title>
+<title>English Quest: impara l'inglese giocando</title>
+<meta name="description" content="Impara l'inglese giocando: 150 vocaboli, 45 verbi irregolari, 50 frasi utili e 4 lezioni di grammatica in 38 livelli, con audio e carattere ad alta leggibilità.">
+<link rel="canonical" href="https://costalonga.org/english-quest/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="it_IT">
+<meta property="og:site_name" content="Guido Costalonga">
+<meta property="og:url" content="https://costalonga.org/english-quest/">
+<meta property="og:title" content="English Quest: impara l'inglese giocando">
+<meta property="og:description" content="Impara l'inglese giocando: 150 vocaboli, 45 verbi irregolari, 50 frasi utili e 4 lezioni di grammatica in 38 livelli, con audio e carattere ad alta leggibilità.">
+<meta property="og:image" content="https://costalonga.org/anteprima.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Guido Costalonga, assessore alla Sicurezza, Protezione Civile, Patrimonio e Mobilità Sostenibile del Comune di Roveredo in Piano">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Guido Costalonga",
+          "item": "https://costalonga.org/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "English Quest",
+          "item": "https://costalonga.org/english-quest/"
+        }
+      ]
+    },
+    {
+      "@type": "VideoGame",
+      "name": "English Quest",
+      "description": "Impara l'inglese giocando: 150 vocaboli, 45 verbi irregolari, 50 frasi utili e 4 lezioni di grammatica in 38 livelli, con audio e carattere ad alta leggibilità.",
+      "url": "https://costalonga.org/english-quest/",
+      "inLanguage": "it",
+      "isAccessibleForFree": true,
+      "applicationCategory": "Game",
+      "operatingSystem": "Browser"
+    }
+  ]
+}
+</script>
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='40' fill='%233f7dd6'/%3E%3Ctext x='90' y='125' font-size='96' text-anchor='middle'%3E%F0%9F%9A%80%3C/text%3E%3C/svg%3E">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='52' font-size='52'%3E%F0%9F%9A%80%3C/text%3E%3C/svg%3E">
 <style>
@@ -230,6 +277,8 @@ body[data-theme="contrast"] .btn.ok{ color:#000; }
 
 .hero{ display:flex; align-items:center; gap:14px; margin:6px 0 18px; }
 .hero h1{ font-size:1.5em; margin:0 0 4px; line-height:1.25; }
+/* titoli di schermata resi come h2 (un solo h1 per pagina): stessa resa di un h1 */
+.titolo-h1{ font-size:2em; margin-block:.67em; }
 .hero p{ margin:0; color:var(--ink-soft); font-size:.92em; }
 
 /* Mappa livelli */
@@ -577,7 +626,7 @@ body[data-anim="off"] .bg-decor{ display:none; }
   <main id="screen-result" class="screen" role="main">
     <div class="result-head">
       <span class="ico" id="result-ico">🏆</span>
-      <h1 id="result-title" style="margin:.2em 0">Livello completato!</h1>
+      <h2 id="result-title" class="titolo-h1" style="margin:.2em 0">Livello completato!</h2>
       <p id="result-sub" style="color:var(--ink-soft);margin:0"></p>
       <div id="result-stars" style="font-size:2em;color:var(--gold);letter-spacing:6px;margin-top:8px"></div>
     </div>
@@ -593,7 +642,7 @@ body[data-anim="off"] .bg-decor{ display:none; }
 
   <!-- ============ PROGRESSI ============ -->
   <main id="screen-stats" class="screen" role="main">
-    <h1 style="font-size:1.4em">📊 I miei progressi</h1>
+    <h2 class="titolo-h1" style="font-size:1.4em">📊 I miei progressi</h2>
     <div class="stat-grid" style="grid-template-columns:repeat(2,1fr)">
       <div class="stat"><b id="st-xp">0</b><span>XP totali</span></div>
       <div class="stat"><b id="st-streak">0</b><span>giorni di fila</span></div>
